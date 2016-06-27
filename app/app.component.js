@@ -1,4 +1,4 @@
-System.register(['angular2/core', './navbar/navbar.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,24 +10,34 @@ System.register(['angular2/core', './navbar/navbar.component'], function(exports
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1;
+    var core_1, router_1, navbar_component_1, home_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (navbar_component_1_1) {
                 navbar_component_1 = navbar_component_1_1;
+            },
+            function (home_component_1_1) {
+                home_component_1 = home_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
                 }
                 AppComponent = __decorate([
+                    router_1.RouteConfig([
+                        { name: 'Home', path: '/', component: home_component_1.HomeComponent, useAsDefault: true },
+                        { name: 'Users', path: '/users', component: home_component_1.HomeComponent }
+                    ]),
                     core_1.Component({
                         selector: 'my-app',
-                        directives: [navbar_component_1.NavbarComponent],
+                        directives: [navbar_component_1.NavbarComponent, home_component_1.HomeComponent, router_1.ROUTER_DIRECTIVES],
                         template: "\n\t\t<navbar></navbar>\n\t\t<div class=\"container\">\n\t\t\t<h1>A2 socializer</h1>\n\t\t</div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
