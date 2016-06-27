@@ -1,4 +1,5 @@
 import { Component } from 'angular2/core';
+import { Router } from 'angular2/router';
 
 @Component({
 	selector: 'home',
@@ -9,4 +10,6 @@ import { Component } from 'angular2/core';
 	`
 })
 
-export class HomeComponent{}
+export class HomeComponent{
+	
+}

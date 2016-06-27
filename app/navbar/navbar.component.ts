@@ -8,6 +8,10 @@ import { ROUTER_DIRECTIVES, Router, RouterLink } from 'angular2/router';
 })
 
 export class NavbarComponent {
-	
+	constructor(private _router: Router){
+	}
 
+	isActive(instruction: any[]): boolean {
+		return this._router.isRouteActive(this._router.generate(instruction));
+	}
 }

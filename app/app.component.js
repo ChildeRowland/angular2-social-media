@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component', './users/users.component', './posts/posts.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, navbar_component_1, home_component_1;
+    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, posts_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,12 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
             },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
+            },
+            function (users_component_1_1) {
+                users_component_1 = users_component_1_1;
+            },
+            function (posts_component_1_1) {
+                posts_component_1 = posts_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -33,12 +39,14 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
                 AppComponent = __decorate([
                     router_1.RouteConfig([
                         { name: 'Home', path: '/', component: home_component_1.HomeComponent, useAsDefault: true },
-                        { name: 'Users', path: '/users', component: home_component_1.HomeComponent }
+                        { name: 'Users', path: '/users', component: users_component_1.UsersComponent },
+                        { name: 'Posts', path: '/posts', component: posts_component_1.PostsComponent },
+                        { name: 'Other', path: '/*other', redirectTo: ['Home'] }
                     ]),
                     core_1.Component({
                         selector: 'my-app',
-                        directives: [navbar_component_1.NavbarComponent, home_component_1.HomeComponent, router_1.ROUTER_DIRECTIVES],
-                        template: "\n\t\t<navbar></navbar>\n\t\t<div class=\"container\">\n\t\t\t<h1>A2 socializer</h1>\n\t\t</div>\n    "
+                        directives: [navbar_component_1.NavbarComponent, home_component_1.HomeComponent, router_1.RouterOutlet],
+                        template: "\n\t\t<navbar></navbar>\n\t\t<div class=\"container\">\n\t\t\t<h1>A2 socializer</h1>\n\t\t\t<router-outlet></router-outlet>\n\t\t</div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
