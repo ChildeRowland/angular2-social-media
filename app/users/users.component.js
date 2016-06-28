@@ -1,4 +1,4 @@
-System.register(['angular2/core', './users.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './users.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/core', './users.service'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, users_service_1;
+    var core_1, router_1, users_service_1;
     var UsersComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (users_service_1_1) {
                 users_service_1 = users_service_1_1;
@@ -33,8 +36,9 @@ System.register(['angular2/core', './users.service'], function(exports_1, contex
                 UsersComponent = __decorate([
                     core_1.Component({
                         selector: 'users',
+                        directives: [router_1.RouterLink],
                         providers: [users_service_1.UsersService],
-                        template: "\n\t\t<div>\n\t\t\t{{ users | json }}\n\t\t</div>\n\t"
+                        template: "\n\t\t<div>\n\t\t\t<i *ngIf=\"!users\" class=\"fa fa-spinner fa-spin fa-4x\"></i>\n\n\t\t\t<div *ngIf=\"users\">\n\t\t\t\t<button class=\"btn btn-primary\" [routerLink]=\"['NewUser']\">\n\t\t\t\t\tAdd User\n\t\t\t\t</button>\n\t\t\t\t<table class=\"table table-border\">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t<th>Edit</th>\n\t\t\t\t\t\t\t<th>Delete</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n\t\t\t\t\t\t<tr *ngFor=\"#user of users\">\n\t\t\t\t\t\t\t<td>{{ user.name }}</td>\n\t\t\t\t\t\t\t<td>{{ user.email }}</td>\n\t\t\t\t\t\t\t<td><i class=\"glyphicon glyphicon-edit\"></i></td>\n\t\t\t\t\t\t\t<td><i class=\"glyphicon glyphicon-trash\"></i></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n\t\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [users_service_1.UsersService])
                 ], UsersComponent);

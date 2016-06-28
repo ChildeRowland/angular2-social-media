@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component', './users/users.component', './posts/posts.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component', './users/users.component', './users/user-form.component', './posts/posts.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, posts_component_1;
+    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, user_form_component_1, posts_component_1;
     var AppComponent;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
             function (users_component_1_1) {
                 users_component_1 = users_component_1_1;
             },
+            function (user_form_component_1_1) {
+                user_form_component_1 = user_form_component_1_1;
+            },
             function (posts_component_1_1) {
                 posts_component_1 = posts_component_1_1;
             }],
@@ -40,6 +43,7 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
                     router_1.RouteConfig([
                         { name: 'Home', path: '/', component: home_component_1.HomeComponent, useAsDefault: true },
                         { name: 'Users', path: '/users', component: users_component_1.UsersComponent },
+                        { name: 'NewUser', path: 'users/new', component: user_form_component_1.UserFormComponent },
                         { name: 'Posts', path: '/posts', component: posts_component_1.PostsComponent },
                         { name: 'Other', path: '/*other', redirectTo: ['Home'] }
                     ]),
