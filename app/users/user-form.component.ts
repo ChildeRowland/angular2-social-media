@@ -1,8 +1,10 @@
-import { Component } from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import { Control, ControlGroup, FormBuilder, Validators } from 'angular2/common';
+import { CanDeactivate, Router, RouteParams } from 'angular2/router';
 import 'rxjs/add/operator/map';
 
 import { UsersService } from './users.service';
+import { User } from './user';
 import { NameValidators } from './validators/name-validators';
 import { EmailValidators } from './validators/email-validators';
 
@@ -12,10 +14,18 @@ import { EmailValidators } from './validators/email-validators';
 	templateUrl: 'app/users/user-form.component.html'
 })
 
-export class UserFormComponent{
+export class UserFormComponent implements CanDeactivate, OnInit {
 	form: ControlGroup;
+	title: string;
+	submit: string;
+	user = new User();
 
-	constructor(formBulder: FormBuilder, private _userService: UsersService){
+	constructor(
+		formBulder: FormBuilder,
+		private _router: Router,
+		private _routeParams: RouteParams,
+		private _userService: UsersService){
+
 		this.form = formBulder.group({
 			name: ['', Validators.compose([
 				Validators.required,
@@ -24,31 +34,67 @@ export class UserFormComponent{
 			email: ['', Validators.compose([
 				Validators.required,
 				EmailValidators.mustBeValidFormat
-			])]
+			])],
+			phone: [],
+			address: formBulder.group({
+				street: [],
+				city: [],
+				zipcode: []
+			})
 		});
 	}
 
-	isValidForm(){
-		if ( this.form.valid ) {
-			alert('Form Submited');
+	ngOnInit(){
+		var id = this._routeParams.get("id");
+
+		if (!id) {
+			this.title = "New User";
+			this.submit = "Add"
+			//this.user = {};
+		} else {
+			this.title = "Edit User";
+			this.submit = "Update"
+			this._userService.findUser(id)
+				.subscribe(res => this.user = res);
 		}
 	}
 
+	// routerCanDeactivate(){
+	// 	if (this.form.dirty) {
+	// 		return confirm("You have unsaved changes, are you sure you want to navigate away?");
+	// 	}
+	// 	return true;
+	// }
+
+	isValidForm(){
+		if ( this.form.valid ) { 
+			this._userService.addUser(this.form.value)
+				.subscribe(() => {
+					//this.form.markAsPristine;
+					this._router.navigate(['Users']);
+			});
+		} 
+	}
+
 	onSubmit(){
-		var email = this.form.find('email');
-		// check for duplicate emails via userService
-		this._userService.getUsers()
-			.map(data => {
-				for (var i = data.length - 1; i >= 0; i--) {
-					if (data[i].email == email.value) {
-						email.setErrors({ mustBeUnique: true });
+		if (this.user.id) {
+			this._userService.updateUser(this.user)
+				.subscribe(() => this.isValidForm());
+		} else {
+			var email = this.form.find('email');
+			// check for duplicate emails via userService
+			this._userService.getUsers()
+				.map(data => {
+					for (var i = data.length - 1; i >= 0; i--) {
+						if (data[i].email == email.value) {
+							email.setErrors({ mustBeUnique: true });
+						}
 					}
-				}
-		}).subscribe(() => this.isValidForm());
+			}).subscribe(() => this.isValidForm());
+		}
 	}
 }
 
-// Add dirty tracking when user tries to navigate away
 
 
 

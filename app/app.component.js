@@ -43,7 +43,8 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
                     router_1.RouteConfig([
                         { name: 'Home', path: '/', component: home_component_1.HomeComponent, useAsDefault: true },
                         { name: 'Users', path: '/users', component: users_component_1.UsersComponent },
-                        { name: 'NewUser', path: 'users/new', component: user_form_component_1.UserFormComponent },
+                        { name: 'NewUser', path: '/users/new', component: user_form_component_1.UserFormComponent },
+                        { name: 'EditUser', path: '/users/:id', component: user_form_component_1.UserFormComponent },
                         { name: 'Posts', path: '/posts', component: posts_component_1.PostsComponent },
                         { name: 'Other', path: '/*other', redirectTo: ['Home'] }
                     ]),
