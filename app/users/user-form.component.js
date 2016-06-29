@@ -68,10 +68,16 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', 'rxjs/ad
                         this.submit = "Add";
                     }
                     else {
-                        this.title = "Edit User";
-                        this.submit = "Update";
                         this._userService.findUser(id)
-                            .subscribe(function (res) { return _this.user = res; });
+                            .subscribe(function (res) {
+                            _this.user = res;
+                            _this.title = "Edit User";
+                            _this.submit = "Update";
+                        }, function (err) {
+                            if (err.status == 404) {
+                                _this._router.navigate(['NotFound']);
+                            }
+                        });
                     }
                 };
                 // routerCanDeactivate(){

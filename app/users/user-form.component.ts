@@ -49,13 +49,18 @@ export class UserFormComponent implements CanDeactivate, OnInit {
 
 		if (!id) {
 			this.title = "New User";
-			this.submit = "Add"
-			//this.user = {};
+			this.submit = "Add";
 		} else {
-			this.title = "Edit User";
-			this.submit = "Update"
 			this._userService.findUser(id)
-				.subscribe(res => this.user = res);
+				.subscribe(res => {
+					this.user = res;
+					this.title = "Edit User";
+					this.submit = "Update";
+				}, err => {
+					if (err.status == 404) {
+						this._router.navigate(['NotFound']);
+					}
+				});
 		}
 	}
 

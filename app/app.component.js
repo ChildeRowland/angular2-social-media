@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component', './users/users.component', './users/user-form.component', './posts/posts.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './navbar/navbar.component', './home/home.component', './users/users.component', './users/user-form.component', './posts/posts.component', './404/not-found.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, user_form_component_1, posts_component_1;
+    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, user_form_component_1, posts_component_1, not_found_component_1;
     var AppComponent;
     return {
         setters:[
@@ -34,6 +34,9 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
             },
             function (posts_component_1_1) {
                 posts_component_1 = posts_component_1_1;
+            },
+            function (not_found_component_1_1) {
+                not_found_component_1 = not_found_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -46,6 +49,7 @@ System.register(['angular2/core', 'angular2/router', './navbar/navbar.component'
                         { name: 'NewUser', path: '/users/new', component: user_form_component_1.UserFormComponent },
                         { name: 'EditUser', path: '/users/:id', component: user_form_component_1.UserFormComponent },
                         { name: 'Posts', path: '/posts', component: posts_component_1.PostsComponent },
+                        { name: 'NotFound', path: '/404', component: not_found_component_1.NotFoundComponent },
                         { name: 'Other', path: '/*other', redirectTo: ['Home'] }
                     ]),
                     core_1.Component({
