@@ -3,14 +3,15 @@ import { RouterLink } from 'angular2/router';
 import { Observable } from 'rxjs/observable';
 
 import { UsersService } from './users.service';
+import { MainSpinner } from './../shared/spinner.component';
 
 @Component({
 	selector: 'users',
-	directives: [ RouterLink ],
+	directives: [ RouterLink, MainSpinner ],
 	providers: [ UsersService ],
 	template: `
 		<div>
-			<i *ngIf="!users" class="fa fa-spinner fa-spin fa-4x"></i>
+			<main-spinner [is-loading]="!users"></main-spinner>
 
 			<div *ngIf="users">
 				<button class="btn btn-primary" [routerLink]="['NewUser']">
