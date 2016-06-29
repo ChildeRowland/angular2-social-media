@@ -12,21 +12,40 @@ import { MainSpinner } from './../shared/spinner.component';
 		<div class="row"
 			 *ngIf="posts">
     		<div class="col-md-6 well">
-				<ul class="list-group" *ngFor="#post of posts">
-	  				<li class="list-group-item">{{ post.title }}</li>
+				<ul class="list-group">
+	  				<li class="list-group-item"
+	  				    *ngFor="#post of posts"
+	  				    (click)="viewPost(post)">
+	  				    {{ post.title }}
+	  				</li>
 	  			</ul>
 	  		</div>
+			<div class="col-md-6">
+				<div class="panel panel-default" *ngIf="singlePost.title">
+		  			<div class="panel-heading">
+							{{ singlePost.title }}
+						</div>
+		  			<div class="panel-body">
+		    			{{ singlePost.body }}
+		  			</div>
+				</div>
+			</div>
 		</div>
 	`
 })
 
 export class PostsComponent implements OnInit {
 	posts: any[];
+	singlePost: any{};
 
 	constructor(private _postsService: PostsService){}
 
 	ngOnInit(){
 		this._postsService.getPosts()
 			.subscribe(res => this.posts = res);
+	}
+
+	viewPost(post){
+		this.singlePost = post;
 	}
 }
