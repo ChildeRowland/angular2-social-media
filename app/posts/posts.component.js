@@ -28,6 +28,7 @@ System.register(['angular2/core', './posts.service', './../shared/spinner.compon
                 function PostsComponent(_postsService) {
                     this._postsService = _postsService;
                     this.singlePost = {};
+                    this.commentsLoading = false;
                 }
                 PostsComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -36,9 +37,14 @@ System.register(['angular2/core', './posts.service', './../shared/spinner.compon
                 };
                 PostsComponent.prototype.viewPost = function (post) {
                     var _this = this;
+                    this.singlePostComments = [];
+                    this.commentsLoading = true;
                     this.singlePost = post;
                     this._postsService.getPost(post)
-                        .subscribe(function (res) { return _this.singlePostComments = res; });
+                        .subscribe(function (res) {
+                        _this.singlePostComments = res;
+                        _this.commentsLoading = false;
+                    });
                 };
                 PostsComponent = __decorate([
                     core_1.Component({

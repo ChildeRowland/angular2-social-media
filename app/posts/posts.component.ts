@@ -19,6 +19,7 @@ export class PostsComponent implements OnInit {
 	posts: any[];
 	singlePost: any{};
 	singlePostComments: any[];
+	commentsLoading = false
 
 	constructor(private _postsService: PostsService){}
 
@@ -28,8 +29,17 @@ export class PostsComponent implements OnInit {
 	}
 
 	viewPost(post){
+		this.singlePostComments = [];
+		this.commentsLoading = true;
 		this.singlePost = post;
 		this._postsService.getPost(post)
-			.subscribe(res => this.singlePostComments = res);
+			.subscribe(res => {
+				this.singlePostComments = res;
+				this.commentsLoading = false;
+			});
 	}
 }
+
+
+
+

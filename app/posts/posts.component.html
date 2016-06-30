@@ -26,6 +26,7 @@
 		</div>
 
 		<!-- comments for the single post -->
+		<main-spinner [is-loading]="commentsLoading"></main-spinner>
 		<div class="media"
 			 *ngFor="#comment of singlePostComments"
 			 *ngIf="comment">
