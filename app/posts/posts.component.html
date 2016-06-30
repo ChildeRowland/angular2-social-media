@@ -1,0 +1,43 @@
+<main-spinner [is-loading]="!posts"></main-spinner>
+
+<!-- list of posts -->
+<div class="row"
+	 *ngIf="posts">
+	<div class="col-md-6 well">
+		<ul class="list-group">
+				<li class="list-group-item post"
+					[class.active]="singlePost == post"
+				    *ngFor="#post of posts"
+				    (click)="viewPost(post)">
+				    {{ post.title }}
+				</li>
+			</ul>
+		</div>
+
+	<!-- single post when selected from list of all posts -->
+	<div class="col-md-6">
+		<div class="panel panel-default" *ngIf="singlePost.title">
+  			<div class="panel-heading">
+					{{ singlePost.title }}
+				</div>
+  			<div class="panel-body">
+    			{{ singlePost.body }}
+  			</div>
+		</div>
+
+		<!-- comments for the single post -->
+		<div class="media"
+			 *ngFor="#comment of singlePostComments"
+			 *ngIf="comment">
+			<div class="media-left">
+				<img class="media-object" 
+					 src="http://lorempixel.com/80/80/people?random={{comment.id}}" 
+					 alt="random image via lorempixel.com">
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">{{ comment.name }}</h4>
+				{{ comment.body }}
+			</div>
+		</div>
+	</div>
+</div>

@@ -7,36 +7,18 @@ import { MainSpinner } from './../shared/spinner.component';
 	selector: 'posts',
 	directives: [ MainSpinner ],
 	providers: [ PostsService ],
-	template: `
-		<main-spinner [is-loading]="!posts"></main-spinner>
-		<div class="row"
-			 *ngIf="posts">
-    		<div class="col-md-6 well">
-				<ul class="list-group">
-	  				<li class="list-group-item"
-	  				    *ngFor="#post of posts"
-	  				    (click)="viewPost(post)">
-	  				    {{ post.title }}
-	  				</li>
-	  			</ul>
-	  		</div>
-			<div class="col-md-6">
-				<div class="panel panel-default" *ngIf="singlePost.title">
-		  			<div class="panel-heading">
-							{{ singlePost.title }}
-						</div>
-		  			<div class="panel-body">
-		    			{{ singlePost.body }}
-		  			</div>
-				</div>
-			</div>
-		</div>
-	`
+	templateUrl: 'app/posts/posts.component.html',
+	styles: [`
+		.post:hover {
+			background-color: #c8d5e2;
+		}
+	`] 
 })
 
 export class PostsComponent implements OnInit {
 	posts: any[];
 	singlePost: any{};
+	singlePostComments: any[];
 
 	constructor(private _postsService: PostsService){}
 
@@ -47,5 +29,7 @@ export class PostsComponent implements OnInit {
 
 	viewPost(post){
 		this.singlePost = post;
+		this._postsService.getPost(post)
+			.subscribe(res => this.singlePostComments = res);
 	}
 }
