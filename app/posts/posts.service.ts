@@ -5,18 +5,24 @@ import  'rxjs/add/operator/map';
 
 @Injectable()
 export class PostsService {
-	url = "http://jsonplaceholder.typicode.com/posts";
+	private _url = "http://jsonplaceholder.typicode.com/posts";
 
 	constructor(private _http: Http){
 
 	}
 
-	getPosts(){
-		return this._http.get(this.url).map(res => res.json());
+	getPosts(filter?){
+		var url = this._url;
+
+		if (filter && filter.userId) {
+			url = `${url}/?userId=${filter.userId}`;
+		}
+
+		return this._http.get(url).map(res => res.json());
 	}
 
 	getPost(post){
-		return this._http.get(`${this.url}/${post.id}/comments`)
+		return this._http.get(`${this._url}/${post.id}/comments`)
 			.map(res => res.json());
 	}
 }

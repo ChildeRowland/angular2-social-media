@@ -1,22 +1,38 @@
-<main-spinner [is-loading]="!posts"></main-spinner>
-
-<!-- list of posts -->
-<div class="row"
-	 *ngIf="posts">
+<div class="row">
 	<div class="col-md-6 well">
-		<ul class="list-group">
+
+		<!-- dropdown menu to filter posts by user -->
+		<select class="form-control select-user" 
+				(change)="selectUser({ userId: u.value })" #u>
+			<option value="">Filter by User</option>
+			<option *ngFor="#user of users"
+					value="{{ user.id }}">{{ user.name }}</option>
+		</select>
+
+		<main-spinner [is-loading]="!posts"></main-spinner>
+
+		<div *ngIf="posts">
+			
+			<paginate [items]="posts"
+					  (page-changed)="changePage($event)"></paginate>
+
+			<!-- list of posts -->
+			<ul class="list-group">
 				<li class="list-group-item post"
 					[class.active]="singlePost == post"
-				    *ngFor="#post of posts"
+				    *ngFor="#post of pagedPosts"
 				    (click)="viewPost(post)">
-				    {{ post.title }}
+
+<!-- <li *ngFor="let post of pagedPosts" class="list-group-item" [class.active]="currentPost == post" (click)="select(post)"> -->
+				    <span>{{ post.title }}</span>
 				</li>
 			</ul>
 		</div>
+	</div>
 
 	<!-- single post when selected from list of all posts -->
 	<div class="col-md-6">
-		<div class="panel panel-default" *ngIf="singlePost.title">
+		<div class="panel panel-default" *ngIf="singlePost">
   			<div class="panel-heading">
 					{{ singlePost.title }}
 				</div>
