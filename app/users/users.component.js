@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './users.service', './../shared/spinner.component'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router-deprecated', './users.service', './../shared/spinner.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,15 @@ System.register(['angular2/core', 'angular2/router', './users.service', './../sh
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, users_service_1, spinner_component_1;
+    var core_1, router_deprecated_1, users_service_1, spinner_component_1;
     var UsersComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (router_deprecated_1_1) {
+                router_deprecated_1 = router_deprecated_1_1;
             },
             function (users_service_1_1) {
                 users_service_1 = users_service_1_1;
@@ -51,9 +51,9 @@ System.register(['angular2/core', 'angular2/router', './users.service', './../sh
                 UsersComponent = __decorate([
                     core_1.Component({
                         selector: 'users',
-                        directives: [router_1.RouterLink, spinner_component_1.MainSpinner],
+                        directives: [router_deprecated_1.RouterLink, spinner_component_1.MainSpinner],
                         providers: [users_service_1.UsersService],
-                        template: "\n\t\t<div>\n\t\t\t<main-spinner [is-loading]=\"!users\"></main-spinner>\n\n\t\t\t<div *ngIf=\"users\">\n\t\t\t\t<button class=\"btn btn-primary\" [routerLink]=\"['NewUser']\">\n\t\t\t\t\tAdd User\n\t\t\t\t</button>\n\t\t\t\t<table class=\"table table-border\">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t<th>Edit</th>\n\t\t\t\t\t\t\t<th>Delete</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n\t\t\t\t\t\t<tr *ngFor=\"#user of users\">\n\t\t\t\t\t\t\t<td>{{ user.name }}</td>\n\t\t\t\t\t\t\t<td>{{ user.email }}</td>\n\t\t\t\t\t\t\t<td><a [routerLink]=\"['EditUser', { id: user.id }]\">\n\t\t\t\t\t\t\t\t<i class=\"glyphicon glyphicon-edit\"></i>\n\t\t\t\t\t\t\t</a></td>\n\t\t\t\t\t\t\t<td><a (click)=\"deleteUser(user)\">\n\t\t\t\t\t\t\t\t<i class=\"glyphicon glyphicon-trash\"></i>\n\t\t\t\t\t\t\t</a></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n\t\t</div>\n\t",
+                        template: "\n\t\t<div>\n\t\t\t<main-spinner [is-loading]=\"!users\"></main-spinner>\n\n\t\t\t<div *ngIf=\"users\">\n\t\t\t\t<button class=\"btn btn-primary\" [routerLink]=\"['NewUser']\">\n\t\t\t\t\tAdd User\n\t\t\t\t</button>\n\t\t\t\t<table class=\"table table-border\">\n\t\t\t\t\t<thead>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t\t\t<th>Email</th>\n\t\t\t\t\t\t\t<th>Edit</th>\n\t\t\t\t\t\t\t<th>Delete</th>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</thead>\n\t\t\t\t\t<tbody>\n\t\t\t\t\t\t<tr *ngFor=\"let user of users\">\n\t\t\t\t\t\t\t<td>{{ user.name }}</td>\n\t\t\t\t\t\t\t<td>{{ user.email }}</td>\n\t\t\t\t\t\t\t<td><a [routerLink]=\"['EditUser', { id: user.id }]\">\n\t\t\t\t\t\t\t\t<i class=\"glyphicon glyphicon-edit\"></i>\n\t\t\t\t\t\t\t</a></td>\n\t\t\t\t\t\t\t<td><a (click)=\"deleteUser(user)\">\n\t\t\t\t\t\t\t\t<i class=\"glyphicon glyphicon-trash\"></i>\n\t\t\t\t\t\t\t</a></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t</div>\n\t\t</div>\n\t",
                         styles: ["\n\t\t.glyphicon-trash{\n\t\t\tcursor: pointer;\n\t\t}\n\t"]
                     }), 
                     __metadata('design:paramtypes', [users_service_1.UsersService])

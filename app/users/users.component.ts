@@ -1,5 +1,5 @@
-import { Component, OnInit } from 'angular2/core';
-import { RouterLink } from 'angular2/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router-deprecated';
 import { Observable } from 'rxjs/observable';
 
 import { UsersService } from './users.service';
@@ -27,7 +27,7 @@ import { MainSpinner } from './../shared/spinner.component';
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="#user of users">
+						<tr *ngFor="let user of users">
 							<td>{{ user.name }}</td>
 							<td>{{ user.email }}</td>
 							<td><a [routerLink]="['EditUser', { id: user.id }]">

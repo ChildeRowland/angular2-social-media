@@ -1,6 +1,6 @@
-import { Component, OnInit } from 'angular2/core';
-import { Control, ControlGroup, FormBuilder, Validators } from 'angular2/common';
-import { CanDeactivate, Router, RouteParams } from 'angular2/router';
+import { Component, OnInit } from '@angular/core';
+import { Control, ControlGroup, FormBuilder, Validators } from '@angular/common';
+import { CanDeactivate, Router, RouteParams } from '@angular/router-deprecated';
 import 'rxjs/add/operator/map';
 
 import { UsersService } from './users.service';
@@ -14,7 +14,8 @@ import { EmailValidators } from './validators/email-validators';
 	templateUrl: 'app/users/user-form.component.html'
 })
 
-export class UserFormComponent implements CanDeactivate, OnInit {
+// CanDeactivate
+export class UserFormComponent implements OnInit {
 	form: ControlGroup;
 	title: string;
 	submit: string;

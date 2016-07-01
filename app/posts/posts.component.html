@@ -5,7 +5,7 @@
 		<select class="form-control select-user" 
 				(change)="selectUser({ userId: u.value })" #u>
 			<option value="">Filter by User</option>
-			<option *ngFor="#user of users"
+			<option *ngFor="let user of users"
 					value="{{ user.id }}">{{ user.name }}</option>
 		</select>
 
@@ -20,7 +20,7 @@
 			<ul class="list-group">
 				<li class="list-group-item post"
 					[class.active]="singlePost == post"
-				    *ngFor="#post of pagedPosts"
+				    *ngFor=" let post of pagedPosts"
 				    (click)="viewPost(post)">
 
 <!-- <li *ngFor="let post of pagedPosts" class="list-group-item" [class.active]="currentPost == post" (click)="select(post)"> -->
@@ -44,7 +44,7 @@
 		<!-- comments for the single post -->
 		<main-spinner [is-loading]="commentsLoading"></main-spinner>
 		<div class="media"
-			 *ngFor="#comment of singlePostComments"
+			 *ngFor="let comment of singlePostComments"
 			 *ngIf="comment">
 			<div class="media-left">
 				<img class="media-object" 
